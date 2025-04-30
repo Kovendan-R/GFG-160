@@ -1,0 +1,20 @@
+
+class Solution {
+
+    // a: input array
+    // n: size of array
+    // Function to find maximum circular subarray sum.
+    public int circularSubarraySum(int arr[]) {
+        int maxsum=arr[0],minsum=arr[0],curmin=arr[0],curmax=arr[0];
+        int total=arr[0];
+        for(int i=1;i<arr.length;i++){
+            curmax=Math.max(arr[i],curmax+arr[i]);
+            maxsum=Math.max(maxsum,curmax);
+            curmin=Math.min(arr[i],curmin+arr[i]);
+            minsum=Math.min(minsum,curmin);
+            total+=arr[i];
+        }
+        if(maxsum<0) return maxsum;
+        return Math.max(maxsum,total-minsum);
+    }
+}
